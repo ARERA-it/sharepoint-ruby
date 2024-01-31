@@ -59,6 +59,7 @@ module Sharepoint
       result = Curl::Easy.send "http_#{method}", *arguments do |curl|
         curl.headers["Cookie"]          = @session.cookie
         curl.headers["Accept"]          = "application/json;odata=verbose"
+    		curl.headers["user-agent"]		  = "NONISV|arera|programmazione/1.0"
         if method != :get
           curl.headers["Content-Type"]    = curl.headers["Accept"]
           curl.headers["X-RequestDigest"] = form_digest unless @getting_form_digest == true
@@ -120,4 +121,3 @@ module Sharepoint
     end
   end
 end
-
